@@ -2,9 +2,9 @@ package mandel.projectile;
 
 public class Projectile
 {
-    private double angle;
     private final double velocity;
     private final double radians;
+    private double angle;
     private double seconds;
 
     public Projectile(double angle, double velocity)
@@ -34,6 +34,11 @@ public class Projectile
      */
     public double getApexTime()
     {
-        return (velocity * Math.sin(radians))/9.8;
+        return (velocity * Math.sin(radians)) / 9.8;
+    }
+
+    public double getPeakY()
+    {
+        return ((velocity * Math.sin(radians)) * (velocity * Math.sin(radians))) / (2 * 9.8);
     }
 }
