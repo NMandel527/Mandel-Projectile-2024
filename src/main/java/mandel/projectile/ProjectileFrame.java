@@ -83,8 +83,9 @@ public class ProjectileFrame extends JFrame
         velocityField.getDocument().addDocumentListener(docListener);
         secondsField.getDocument().addDocumentListener(docListener);
     }
-    public void calculations (JSlider angleSlider, JTextField velocityField, JTextField secondsField,
-                              JLabel x, JLabel y, JLabel peakY, JLabel interceptX){
+
+    public void calculations(JSlider angleSlider, JTextField velocityField, JTextField secondsField,
+                              JLabel x, JLabel y, JLabel peakY, JLabel interceptX) {
         Projectile projectile = new Projectile(angleSlider.getValue(),
                 Double.parseDouble(velocityField.getText()));
         projectile.setSeconds(Double.parseDouble(secondsField.getText()));
