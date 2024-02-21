@@ -63,45 +63,35 @@ public class ProjectileFrame extends JFrame
         calculateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Projectile projectile = new Projectile(angleSlider.getValue(),
-                        Double.parseDouble(velocityField.getText()));
-                projectile.setSeconds(Double.parseDouble(secondsField.getText()));
-
-                x.setText(Double.toString(projectile.getX()));
-                y.setText(Double.toString(projectile.getY()));
-                peakY.setText(Double.toString(projectile.getPeakY()));
-                interceptX.setText(Double.toString(projectile.getInterceptX()));
+                calculations(angleSlider, velocityField, secondsField, x, y, peakY, interceptX);
             }
         });
 
         angleSlider.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent ce) {
-                Projectile projectile = new Projectile(angleSlider.getValue(),
-                        Double.parseDouble(velocityField.getText()));
-                projectile.setSeconds(Double.parseDouble(secondsField.getText()));
-
-                x.setText(Double.toString(projectile.getX()));
-                y.setText(Double.toString(projectile.getY()));
-                peakY.setText(Double.toString(projectile.getPeakY()));
-                interceptX.setText(Double.toString(projectile.getInterceptX()));
+                calculations(angleSlider, velocityField, secondsField, x, y, peakY, interceptX);
             }
         });
 
         SimpleDocumentListener docListener = new SimpleDocumentListener() {
             @Override
             public void update(DocumentEvent e) {
-                Projectile projectile = new Projectile(angleSlider.getValue(),
-                        Double.parseDouble(velocityField.getText()));
-                projectile.setSeconds(Double.parseDouble(secondsField.getText()));
-
-                x.setText(Double.toString(projectile.getX()));
-                y.setText(Double.toString(projectile.getY()));
-                peakY.setText(Double.toString(projectile.getPeakY()));
-                interceptX.setText(Double.toString(projectile.getInterceptX()));
+                calculations(angleSlider, velocityField, secondsField, x, y, peakY, interceptX);
             }
         };
 
         velocityField.getDocument().addDocumentListener(docListener);
         secondsField.getDocument().addDocumentListener(docListener);
+    }
+    public void calculations (JSlider angleSlider, JTextField velocityField, JTextField secondsField,
+                              JLabel x, JLabel y, JLabel peakY, JLabel interceptX){
+        Projectile projectile = new Projectile(angleSlider.getValue(),
+                Double.parseDouble(velocityField.getText()));
+        projectile.setSeconds(Double.parseDouble(secondsField.getText()));
+
+        x.setText(Double.toString(projectile.getX()));
+        y.setText(Double.toString(projectile.getY()));
+        peakY.setText(Double.toString(projectile.getPeakY()));
+        interceptX.setText(Double.toString(projectile.getInterceptX()));
     }
 }
