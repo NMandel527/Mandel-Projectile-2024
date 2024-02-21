@@ -23,12 +23,12 @@ public class ProjectileFrame extends JFrame
         add(velocityField);
 
         JLabel angleLabel = new JLabel("Angle");
+        add(angleLabel);
         JSlider angleSlider = new JSlider(0, 90);
         angleSlider.setMajorTickSpacing(10);
         angleSlider.setMinorTickSpacing(5);
         angleSlider.setPaintTicks(true);
         angleSlider.setPaintLabels(true);
-        add(angleLabel);
         add(angleSlider);
 
         JLabel secondsLabel = new JLabel("Seconds");
@@ -36,24 +36,24 @@ public class ProjectileFrame extends JFrame
         add(secondsLabel);
         add(secondsField);
 
-        JLabel xLabel = new JLabel("X");
+        JLabel labelX = new JLabel("X");
         JLabel x = new JLabel();
-        add(xLabel);
+        add(labelX);
         add(x);
 
-        JLabel yLabel = new JLabel("Y");
+        JLabel labelY = new JLabel("Y");
         JLabel y = new JLabel();
-        add(yLabel);
+        add(labelY);
         add(y);
 
-        JLabel peakYLabel = new JLabel("PeakY");
+        JLabel peakLabelY = new JLabel("PeakY");
         JLabel peakY = new JLabel();
-        add(peakYLabel);
+        add(peakLabelY);
         add(peakY);
 
-        JLabel interceptXLabel = new JLabel("InterceptX");
+        JLabel interceptLabelX = new JLabel("InterceptX");
         JLabel interceptX = new JLabel();
-        add(interceptXLabel);
+        add(interceptLabelX);
         add(interceptX);
 
         JButton calculateButton = new JButton("Calculate");
@@ -63,7 +63,8 @@ public class ProjectileFrame extends JFrame
         calculateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Projectile projectile = new Projectile(angleSlider.getValue(), Double.parseDouble(velocityField.getText()));
+                Projectile projectile = new Projectile(angleSlider.getValue(),
+                        Double.parseDouble(velocityField.getText()));
                 projectile.setSeconds(Double.parseDouble(secondsField.getText()));
 
                 x.setText(Double.toString(projectile.getX()));
@@ -75,7 +76,8 @@ public class ProjectileFrame extends JFrame
 
         angleSlider.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent ce) {
-                Projectile projectile = new Projectile(angleSlider.getValue(), Double.parseDouble(velocityField.getText()));
+                Projectile projectile = new Projectile(angleSlider.getValue(),
+                        Double.parseDouble(velocityField.getText()));
                 projectile.setSeconds(Double.parseDouble(secondsField.getText()));
 
                 x.setText(Double.toString(projectile.getX()));
@@ -88,7 +90,8 @@ public class ProjectileFrame extends JFrame
         SimpleDocumentListener docListener = new SimpleDocumentListener() {
             @Override
             public void update(DocumentEvent e) {
-                Projectile projectile = new Projectile(angleSlider.getValue(), Double.parseDouble(velocityField.getText()));
+                Projectile projectile = new Projectile(angleSlider.getValue(),
+                        Double.parseDouble(velocityField.getText()));
                 projectile.setSeconds(Double.parseDouble(secondsField.getText()));
 
                 x.setText(Double.toString(projectile.getX()));
