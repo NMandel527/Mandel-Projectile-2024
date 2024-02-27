@@ -35,7 +35,7 @@ public class ProjectileTest {
     }
 
     @Test
-    public void getPeekY() {
+    public void getPeakY() {
         Projectile projectile = new Projectile(31, 65);
 
         double actual = projectile.getPeakY();
