@@ -3,8 +3,8 @@ package mandel.projectile;
 import javax.swing.*;
 import java.awt.*;
 
-public class ProjectileGraph extends JComponent {
-
+public class ProjectileGraph extends JComponent
+{
     private Projectile projectile = new Projectile(0, 0);
 
     @Override
@@ -33,5 +33,4 @@ public class ProjectileGraph extends JComponent {
         //tells the operating system to call paintComponent() again
         repaint();
     }
-
 }
