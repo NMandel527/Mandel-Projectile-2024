@@ -19,6 +19,7 @@ public class ProjectileGraph extends JComponent
         int y;
 
         g.setColor(Color.BLACK);
+        projectile.setSeconds(0);
 
         for (int i = 0; i <= (projectile.getApexTime() * 2) + 1; i++)
         {
