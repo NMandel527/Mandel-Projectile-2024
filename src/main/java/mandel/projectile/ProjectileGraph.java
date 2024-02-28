@@ -13,14 +13,15 @@ public class ProjectileGraph extends JComponent
 
         g.translate(0, getHeight());
         g.setColor(Color.BLUE);
-        g.fillOval((int) projectile.getInterceptX() / 2, (int) (-projectile.getPeakY()), 10, 10);
+        g.fillOval((int) (projectile.getInterceptX() / 2) - 5, (int) (-projectile.getPeakY()) - 5, 10, 10);
 
         int x;
         int y;
 
+        g.setColor(Color.BLACK);
+
         for (int i = 0; i <= (projectile.getApexTime() * 2) + 1; i++)
         {
-            g.setColor(Color.BLACK);
             x = (int) projectile.getX();
             y = (int) projectile.getY();
             projectile.setSeconds(i);
