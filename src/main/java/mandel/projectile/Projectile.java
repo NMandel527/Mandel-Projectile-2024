@@ -14,6 +14,17 @@ public class Projectile
         this.radians = Math.toRadians(angle);
     }
 
+    public Projectile(Projectile projectile)
+    {
+        this(projectile.angle, projectile.velocity);
+        this.seconds = projectile.seconds;
+    }
+
+    public double getSeconds()
+    {
+        return seconds;
+    }
+
     public void setSeconds(double seconds)
     {
         this.seconds = seconds;

@@ -5,23 +5,23 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.DocumentEvent;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class ProjectileFrame extends JFrame
 {
-    private JTextField velocityField;
+    private JSlider velocitySlider;
     private JSlider angleSlider;
     private JTextField secondsField;
     private JLabel lx;
     private JLabel ly;
     private JLabel peakY;
     private JLabel interceptX;
+    private JLabel angleNumber;
+    private JLabel velocityNumber;
 
     private ProjectileGraph graph;
 
     public ProjectileFrame() {
-        setSize(800, 600);
+        setSize(1000, 600);
         setTitle("Projectile Calculator");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
@@ -33,12 +33,20 @@ public class ProjectileFrame extends JFrame
         JPanel west = new JPanel();
         main.add(west, BorderLayout.WEST);
 
-        west.setLayout(new GridLayout(8, 2));
+        west.setLayout(new GridLayout(9, 2));
 
         JLabel velocityLabel = new JLabel("Velocity");
-        velocityField = new JTextField();
         west.add(velocityLabel);
-        west.add(velocityField);
+        velocitySlider = new JSlider(0, 100);
+        velocitySlider.setMajorTickSpacing(10);
+        velocitySlider.setMinorTickSpacing(5);
+        velocitySlider.setPaintTicks(true);
+        velocitySlider.setPaintLabels(true);
+        west.add(velocitySlider);
+        JLabel vs = new JLabel();
+        velocityNumber = new JLabel(String.valueOf(velocitySlider.getValue()));
+        west.add(vs);
+        west.add(velocityNumber);
 
         JLabel angleLabel = new JLabel("Angle");
         west.add(angleLabel);
@@ -48,6 +56,10 @@ public class ProjectileFrame extends JFrame
         angleSlider.setPaintTicks(true);
         angleSlider.setPaintLabels(true);
         west.add(angleSlider);
+        JLabel as = new JLabel();
+        angleNumber = new JLabel(String.valueOf(angleSlider.getValue()));
+        west.add(as);
+        west.add(angleNumber);
 
         JLabel secondsLabel = new JLabel("Seconds");
         secondsField = new JTextField();
@@ -74,18 +86,14 @@ public class ProjectileFrame extends JFrame
         west.add(interceptLabelX);
         west.add(interceptX);
 
-        JButton calculateButton = new JButton("Calculate");
-        west.add(new JLabel());
-        west.add(calculateButton);
 
-        calculateButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        angleSlider.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent ce) {
                 calculations();
             }
         });
 
-        angleSlider.addChangeListener(new ChangeListener() {
+        velocitySlider.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent ce) {
                 calculations();
             }
@@ -98,7 +106,6 @@ public class ProjectileFrame extends JFrame
             }
         };
 
-        velocityField.getDocument().addDocumentListener(docListener);
         secondsField.getDocument().addDocumentListener(docListener);
 
         graph = new ProjectileGraph();
@@ -106,14 +113,15 @@ public class ProjectileFrame extends JFrame
     }
 
     public void calculations() {
-        Projectile projectile = new Projectile(angleSlider.getValue(),
-                Double.parseDouble(velocityField.getText()));
+        Projectile projectile = new Projectile(angleSlider.getValue(), velocitySlider.getValue());
         projectile.setSeconds(Double.parseDouble(secondsField.getText()));
 
         lx.setText(Double.toString(projectile.getX()));
         ly.setText(Double.toString(projectile.getY()));
         peakY.setText(Double.toString(projectile.getPeakY()));
         interceptX.setText(Double.toString(projectile.getInterceptX()));
+        angleNumber.setText(Double.toString((int)angleSlider.getValue()));
+        velocityNumber.setText(Double.toString(velocitySlider.getValue()));
         graph.setProjectile(projectile);
     }
 }
