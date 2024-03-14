@@ -17,11 +17,11 @@ public class ProjectileGraph extends JComponent
         g.fillRect(0,0, getWidth(), getHeight());
 
         g.setColor(Color.LIGHT_GRAY);
-        for (int i = 0; i < getWidth(); i += 30) {
+        for (int i = 0; i <= getWidth(); i += 30) {
             g.drawLine(i, 0, i, getHeight());
         }
 
-        for (int i = 0; i < getHeight(); i += 30) {
+        for (int i = 0; i <= getHeight(); i += 30) {
             g.drawLine(0, i, getWidth(), i);
         }
 
